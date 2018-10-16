@@ -1,0 +1,27 @@
+<div class="page-layout blank make" fusePerfectScrollbar>
+    <div class="main_banner">
+        <div #uploader>
+            <input hidden type="file" (change)="fileChange($event)" #fileInput/>
+            <div class="img_add_box" (click)="fileInput.click()">
+                <mat-icon class="s-48 mat-icon material-icons" role="img" aria-hidden="true">image</mat-icon>
+            </div>
+
+        </div>
+
+        <canvas #banner id="banner"></canvas>
+    </div>
+
+    <div *ngIf="image !== null" class="editer p-24">
+        <mat-form-field>
+            <input #tmpNameField matInput placeholder="テンプレート名" [(ngModel)]="tmpName" required>
+            <mat-error>テンプレート名を入力してください</mat-error>
+        </mat-form-field>
+
+        <fuse-panel [txtObjects]='txtObjects' (onValueChange)="onSettingsChange()"></fuse-panel>
+
+        <div class="button-row" *ngIf="tmpName && txtObjects.length > 0">
+            <spinner-button [options]="spinnerButtonOptions" (click)="save()">保 存</spinner-button>
+        </div>
+    </div>
+
+</div>

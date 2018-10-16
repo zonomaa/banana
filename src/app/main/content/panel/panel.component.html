@@ -1,0 +1,91 @@
+<mat-accordion class="fuse-panel">
+    <mat-expansion-panel *ngFor="let object of txtObjects;let obj_index = index" hideToggle="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{ object.text }}
+            </mat-panel-title>
+            <button mat-icon-button color="warn" (click)="removeText($event, obj_index)">
+                <mat-icon>delete_forever</mat-icon>
+            </button>
+        </mat-expansion-panel-header>
+
+        <mat-tab-group>
+            <mat-tab label="テキスト">
+                <div class="font_select" [(fontPicker)]="font" [fpWidth]="'320px'" [fpPosition]="'bottom'" [fpStyleSelect]="styleSelect" (fontPickerChange)="onChangeFont($event,obj_index)"
+                    [fpPresetFonts]="presetFonts">
+                    {{ object.fontFamily }}
+                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">arrow_drop_down</mat-icon>
+                </div>
+
+                <input class="fill_color_box" [(colorPicker)]="color" [style.background]="color" [cpOutputFormat]="'rgba'" (colorPickerChange)="onChangeColor($event,obj_index)"/>
+
+                <div class="tool_box">
+                        <label *ngFor="let align of aligns">
+                            <input hidden type="radio" name='font-align' (change)="onChange($event, obj_index, 'textAlign', align)" [ngModel]='object.textAlign' value="{{ align }}"/>
+                            <span>
+                                <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">format_align_{{ align }}</mat-icon>
+                            </span>
+                        </label>
+                </div>
+
+                <div class="tool_box">
+                    <label>
+                        <input hidden type="checkbox" name='font-width' (change)="onFontWidth($event, obj_index)" [checked]="object.fontWeight !== 'normal'"/>
+                        <span>
+                            <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">format_bold</mat-icon>
+                        </span>
+                    </label>
+                    <label>
+                        <input hidden type="checkbox" name='font-style' (change)="onFontStyle($event, obj_index)" [checked]="object.fontStyle !== 'normal'"/>
+                        <span>
+                            <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">format_italic</mat-icon>
+                        </span>
+                    </label>
+                </div>
+
+                <span class="content">
+                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">format_line_spacing</mat-icon> :
+                    <mat-slider showTicks='true' min="0.1" value="1" step="0.1" max="3" (change)='onChange($event, obj_index, "lineHeight")' [thumbLabel]="true"
+                        [(ngModel)]="object.lineHeight"></mat-slider>
+                </span>
+
+                <span class="content">
+                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">compare_arrows</mat-icon> :
+                    <mat-slider showTicks='true' min="-300" value="1" step="1" max="300" (change)='onChange($event, obj_index, "charSpacing")'
+                        [thumbLabel]="true" [(ngModel)]="object.charSpacing"></mat-slider>
+                </span>
+
+                <mat-form-field class="text_box">
+                    <textarea matInput (keyup)="onChange($event, obj_index)" [(ngModel)]="object.text">{{ object.text }}</textarea>
+                </mat-form-field>
+            </mat-tab>
+
+
+            <mat-tab label="ドロップシャドウ">
+                <span class="content">Color :
+                    <input class="fill_color_box" [(colorPicker)]="color2" [style.background]="color2" [cpOutputFormat]="'rgba'" (colorPickerChange)="onChangeShadowColor($event,obj_index)"/>
+                </span>
+                <span class="content">
+                    x : <mat-slider showTicks='true' min="-50" value="0" max="50" (change)='onChange($event, obj_index)' [thumbLabel]="true" [(ngModel)]="object.shadow.offsetX"></mat-slider>
+                </span>
+                <span class="content">
+                    y : <mat-slider min="-50" value="0" max="50" (change)='onChange($event, obj_index)' [thumbLabel]="true" [(ngModel)]="object.shadow.offsetY"></mat-slider>
+                </span>
+                <span class="content">
+                    ぼかし : <mat-slider min="0" value="0" max="30" (change)='onChange($event, obj_index)' [thumbLabel]="true" [(ngModel)]="object.shadow.blur"></mat-slider>
+                </span>
+            </mat-tab>
+
+            <mat-tab label="境界線">
+                Color :
+                <input class="fill_color_box" [(colorPicker)]="color3" [style.background]="color3" [cpOutputFormat]="'rgba'" (colorPickerChange)="onChange($event, obj_index, 'stroke')"/>
+                太さ : <mat-slider min="0" value="0" max="5" step="0.1" (change)='onChange($event, obj_index, "strokeWidth")' [thumbLabel]="true" [(ngModel)]="object.strokeWidth"></mat-slider>
+            </mat-tab>
+        </mat-tab-group>
+
+    </mat-expansion-panel>
+</mat-accordion>
+
+<div *ngIf='addBtn' class="txt_add_box" (click)="addText()">
+    +
+</div>

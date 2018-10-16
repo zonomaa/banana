@@ -1,0 +1,15 @@
+<div class="page-layout blank edit" fusePerfectScrollbar>
+    <div class="main_banner">
+        <canvas #banner id="banner"></canvas>
+    </div>
+
+    <div class="editer p-24">
+        <h2 class="title">Text Editer</h2>
+
+        <fuse-panel [txtObjects]='txtObjects' (onValueChange)="onSettingsChange()"></fuse-panel>
+
+        <div class="button-row">
+            <button mat-raised-button (click)="save()" color="accent">バナーを生成</button>
+        </div>
+    </div>
+</div>

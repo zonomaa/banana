@@ -1,0 +1,22 @@
+.page-layout.edit {
+    .main_banner {
+        background-color: #e8e8e8;
+        padding: 50px 0;
+    }
+    .editer {
+        display: flex;
+        flex-direction: column;
+        .title {
+            color: #868686;
+            font-weight: 100;
+        }
+    }
+
+    fuse-panel {
+        padding: 20px 0;
+    }
+    
+    .editer > * {
+      width: 100%;
+    }
+}

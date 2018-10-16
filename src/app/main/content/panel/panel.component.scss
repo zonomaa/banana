@@ -1,0 +1,94 @@
+.fuse-panel {
+    mat-panel-title {
+        color: hsla(0, 0%, 17%, 0.6);
+        padding: 10px 0;
+    }
+
+    .mat-tab-label {
+        height: 30px;
+    }
+
+    .mat-tab-body {
+        padding: 20px 0px;
+
+        span.content {
+            display: inline-block;
+            margin: 0px 5px;
+
+            mat-icon {
+                vertical-align: middle;
+            }
+        }
+    }
+    
+    .mat-tab-body-wrapper, .mat-tab-body.mat-tab-body-active {
+        overflow: visible;
+    }
+
+    .font_select {
+        display: inline-block;
+        border: 1px solid #e6e6e6;
+        padding: 3px 0px 3px 10px;
+        vertical-align: middle;
+        cursor: pointer;
+
+        .mat-icon {
+            vertical-align: middle;
+        }
+    }
+
+    mat-form-field.text_box {
+        width: 100%;
+    }
+
+    .fill_color_box {
+        background: #000;
+        padding: 7px;
+        vertical-align: middle;
+        border: 1px solid #e6e6e6;
+        width: 60px;
+    }
+
+    .mat-slider-horizontal{
+        margin: 20px 0;
+    }
+
+}
+
+.txt_add_box {
+    text-align: center;
+    font-size: 30px;
+    border: dashed 3px #b5b5b5;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.tool_box {
+    display: inline-block;
+    border: 1px solid #e6e6e6;
+    font-size: 0px;
+    cursor: pointer;
+    vertical-align: middle;
+
+    label {
+        display: inline-block;
+        cursor: pointer;
+
+        &:not(:first-child){
+            span {
+                border-left: 1px solid #e6e6e6;
+            }
+        }
+        span {
+            display: inline-block;
+            padding: 3px;
+    
+            .mat-icon {
+                vertical-align: middle;
+            }
+        }
+        input:checked + span {
+            background-color: rgba(2, 155, 229, 0.8);
+        }
+    }
+}
